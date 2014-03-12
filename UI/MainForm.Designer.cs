@@ -32,7 +32,9 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.listBox1 = new System.Windows.Forms.ListBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnExecutePlugin = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -44,6 +46,10 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
+            this.splitContainer3.Panel1.SuspendLayout();
+            this.splitContainer3.Panel2.SuspendLayout();
+            this.splitContainer3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -80,7 +86,7 @@
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.listBox1);
+            this.splitContainer2.Panel1.Controls.Add(this.splitContainer3);
             this.splitContainer2.Panel1.Controls.Add(this.panel2);
             // 
             // splitContainer2.Panel2
@@ -91,15 +97,44 @@
             this.splitContainer2.SplitterDistance = 280;
             this.splitContainer2.TabIndex = 0;
             // 
+            // splitContainer3
+            // 
+            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer3.Name = "splitContainer3";
+            this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer3.Panel1
+            // 
+            this.splitContainer3.Panel1.Controls.Add(this.listBox1);
+            // 
+            // splitContainer3.Panel2
+            // 
+            this.splitContainer3.Panel2.Controls.Add(this.textBox2);
+            this.splitContainer3.Size = new System.Drawing.Size(280, 390);
+            this.splitContainer3.SplitterDistance = 306;
+            this.splitContainer3.TabIndex = 2;
+            // 
             // listBox1
             // 
             this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(0, 0);
+            this.listBox1.MultiColumn = true;
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(280, 390);
+            this.listBox1.Size = new System.Drawing.Size(280, 306);
             this.listBox1.TabIndex = 2;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            // 
+            // textBox2
+            // 
+            this.textBox2.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox2.Location = new System.Drawing.Point(0, 0);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(280, 80);
+            this.textBox2.TabIndex = 0;
             // 
             // panel2
             // 
@@ -155,6 +190,7 @@
             this.textBox1.Location = new System.Drawing.Point(0, 0);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBox1.Size = new System.Drawing.Size(558, 429);
             this.textBox1.TabIndex = 0;
             // 
@@ -175,6 +211,11 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
+            this.splitContainer3.Panel1.ResumeLayout(false);
+            this.splitContainer3.Panel2.ResumeLayout(false);
+            this.splitContainer3.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
+            this.splitContainer3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -198,6 +239,8 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnClearConsole;
+        private System.Windows.Forms.SplitContainer splitContainer3;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
 

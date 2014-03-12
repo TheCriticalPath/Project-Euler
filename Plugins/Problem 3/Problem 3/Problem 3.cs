@@ -14,8 +14,8 @@ namespace Problem_3
     {
         public long _limit;
         public bool ImplementsGetInput { get { return true; } }
-        public string Name { get { return "Project Euler: Problem 3"; } }
-        public string Description { get { return "What is the largest prime factor of a number?"; } }
+        public string Name { get { return "Problem 3: Largest prime factor"; } }
+        public string Description { get { return "The prime factors of 13195 are 5, 7, 13 and 29.What is the largest prime factor of the number 600851475143?"; } }
 
         public Problem_3() { }
         public IEulerPluginContext PerformAction(IEulerPluginContext context) {
@@ -26,7 +26,7 @@ namespace Problem_3
         private long GetLimit()
         {
             long lngLimit = 0;
-            string strLimit = string.Empty;
+            string strLimit = "600851475143";
 
             while (lngLimit < 1)
             {

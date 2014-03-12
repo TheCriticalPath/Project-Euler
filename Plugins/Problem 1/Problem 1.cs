@@ -15,12 +15,12 @@ namespace Problem_1
         public int _limit;
         public string Name
         {
-            get { return "Project Euler: Problem 1"; }
+            get { return "Problem 1: Multiples of 3 and 5"; }
         }
 
         public string Description
         {
-            get { return "Find the sum of all the multiples of 3 or 5 below 1000."; }
+            get { return "If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9.  The sum of these multiples is 23.  Find the sum of all the multiples of 3 or 5 below 1000."; }
         }
 
         public Problem_1(){ }
@@ -39,7 +39,7 @@ namespace Problem_1
 
         private int GetLimit() {
             int intLimit = 0;
-            string strLimit = string.Empty;
+            string strLimit = "1000";
 
             while (intLimit < 1) {
                 Helpers.InputBox.Show(Name, "Enter Upper Limit", ref strLimit);
