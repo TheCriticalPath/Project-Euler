@@ -14,7 +14,12 @@ namespace Problem_3
     {
         public long _limit;
         public bool ImplementsGetInput { get { return true; } }
-        public string Name { get { return "Problem 3: Largest prime factor"; } }
+        public int ID { get { return 3; } }
+        public string Name
+        {
+            get { return string.Format("Problem {0}: {1}", ID, Title); }
+        }
+        public string Title { get { return string.Format("Largest prime factor", ID); } }
         public string Description { get { return "The prime factors of 13195 are 5, 7, 13 and 29.What is the largest prime factor of the number 600851475143?"; } }
 
         public Problem_3() { }

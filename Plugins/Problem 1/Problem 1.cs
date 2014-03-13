@@ -13,11 +13,12 @@ namespace Problem_1
     {
         public bool ImplementsGetInput { get { return true; } }
         public int _limit;
+        public int ID { get { return 1; } }
         public string Name
         {
-            get { return "Problem 1: Multiples of 3 and 5"; }
+            get { return string.Format("Problem {0}: {1}",ID,Title); }
         }
-
+        public string Title { get { return "Multiples of 3 and 5"; } }
         public string Description
         {
             get { return "If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9.  The sum of these multiples is 23.  Find the sum of all the multiples of 3 or 5 below 1000."; }

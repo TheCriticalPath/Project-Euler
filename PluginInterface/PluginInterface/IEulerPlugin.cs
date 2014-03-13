@@ -8,6 +8,8 @@ namespace PluginInterface
 {
     public interface IEulerPlugin
     {
+        int ID { get; }
+        string Title { get; }
         string Name { get; }
         string Description { get; }
         bool ImplementsGetInput { get; }

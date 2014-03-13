@@ -33,7 +33,7 @@
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnExecutePlugin = new System.Windows.Forms.Button();
@@ -50,6 +50,7 @@
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -106,7 +107,7 @@
             // 
             // splitContainer3.Panel1
             // 
-            this.splitContainer3.Panel1.Controls.Add(this.listBox1);
+            this.splitContainer3.Panel1.Controls.Add(this.dataGridView1);
             // 
             // splitContainer3.Panel2
             // 
@@ -115,16 +116,21 @@
             this.splitContainer3.SplitterDistance = 306;
             this.splitContainer3.TabIndex = 2;
             // 
-            // listBox1
+            // dataGridView1
             // 
-            this.listBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(0, 0);
-            this.listBox1.MultiColumn = true;
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(280, 306);
-            this.listBox1.TabIndex = 2;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.GridColor = System.Drawing.SystemColors.Control;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(280, 306);
+            this.dataGridView1.TabIndex = 3;
+            this.dataGridView1.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridView1_ColumnAdded);
+            this.dataGridView1.SelectionChanged += new System.EventHandler(this.dataGridView1_SelectionChanged);
             // 
             // textBox2
             // 
@@ -216,6 +222,7 @@
             this.splitContainer3.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -234,13 +241,13 @@
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnExecutePlugin;
-        private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnClearConsole;
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 

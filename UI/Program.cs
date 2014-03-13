@@ -22,6 +22,7 @@ namespace UI
             MEFPluginLoader loader = new MEFPluginLoader("Plugins");
             EulerPlugins = loader.Plugins;
             
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());

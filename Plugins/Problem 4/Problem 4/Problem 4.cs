@@ -14,7 +14,13 @@ namespace Problem_4
     {
         public long _limit;
         public bool ImplementsGetInput { get { return true; } }
-        public string Name { get { return "Problem 4: Largest palindrome product"; } }
+        public int ID { get { return 4; } }
+        public string Name
+        {
+            get { return string.Format("Problem {0}: {1}", ID, Title); }
+        }
+
+        public string Title{ get { return "Largest palindrome product"; } }
         public string Description { get { return "A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99.  Find the largest palindrome made from the product of two 3-digit numbers."; } }
 
         public Problem_4() { }
