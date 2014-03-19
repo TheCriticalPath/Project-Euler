@@ -29,7 +29,7 @@ namespace UI
             this.dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.DataSource = Program.EulerPlugins.OrderBy(plugin => plugin.ID).ToList();
+            this.dataGridView1.DataSource = Program.EulerPlugins.OrderByDescending(plugin => plugin.ID).ToList();
             
         }
 
