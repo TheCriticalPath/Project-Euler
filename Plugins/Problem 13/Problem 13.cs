@@ -14,23 +14,23 @@ namespace Problem_13
     {
         public long _limit;
         public bool ImplementsGetInput { get { return true; } }
-        public int ID { get { return 12; } }
+        public int ID { get { return 13; } }
         public string Name
         {
             get { return string.Format("Problem {0}: {1}", ID, Title); }
         }
-        public string Title { get { return string.Format("<Project Name>", ID); } }
-        public string Description { get { return "<Project Description>"; } }
+        public string Title { get { return string.Format("Large Sums: {0}", ID); } }
+        public string Description { get { return "Work out the first ten digits of the sum of the following one-hundred 50-digit numbers."; } }
         public Problem_13() { }
 
         private long GetLimit()
         {
             long lngLimit = 0;
-            string strLimit = "0";
+            string strLimit = "10";
 
             while (lngLimit < 1)
             {
-                Helpers.InputBox.Show(Name, "Enter limit", ref strLimit);
+                Helpers.InputBox.Show(Name, "How many significant digits?", ref strLimit);
                 if (!Int64.TryParse(strLimit, out lngLimit))
                 {
                     lngLimit = 0;
