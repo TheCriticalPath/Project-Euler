@@ -121,5 +121,81 @@ namespace Helpers
             return _arrFactors.ToArray();
             #endregion
         }
+
+        private static String[] NumberWords = { "zero"
+                                              , "one"
+                                              , "two"
+                                              , "three"
+                                              , "four"
+                                              , "five"
+                                              , "six"
+                                              , "seven"
+                                              , "eight"
+                                              , "nine"
+                                              , "ten"
+                                              , "eleven"
+                                              , "twelve"
+                                              , "thirteen"
+                                              , "fourteen"
+                                              , "fifteen"
+                                              , "sixteen"
+                                              , "seventeen"
+                                              , "eighteen"
+                                              , "nineteen"
+                                              , "twenty"
+                                              , "thirty"
+                                              , "forty"
+                                              , "fifty"
+                                              , "sixty"
+                                              , "seventy"
+                                              , "eighty"
+                                              , "ninety"};
+        private const string AND = "and";
+        private const string HUNDRED = "hundred";
+        private const string THOUSAND = "thousand";
+        public static string ConvertToWord(this int i)
+        {
+            string retVal = string.Empty;
+            string s = i.ToString();
+            int length = i.ToString().Length;
+            int mod = 0;
+            int floor = 0;
+            if (i == 0)
+            {
+                retVal = "";
+            }
+            else if (i <= 20)
+            {
+                retVal = NumberWords[i];
+            }
+            else if (i < 100)
+            {
+                floor = (int)Math.Floor(i / 10D);
+                mod = i % (floor * 10);
+                retVal = NumberWords[18 + floor];
+                if (mod != 0)
+                {
+                    retVal += "-" + NumberWords[mod];
+                };
+            }
+            else if (i < 1000)
+            {
+                floor = (int)Math.Floor(i / 100D);
+                mod = i % (floor * 100);
+
+                retVal += NumberWords[floor] + " " + HUNDRED;
+                if (mod != 0)
+                { 
+                    retVal += " " + AND + " " + mod.ConvertToWord(); ;
+                };
+            }
+            else if (i == 1000)
+            {
+                retVal = "One Thousand";
+            }
+
+            return retVal;
+        }
+
     }
 }
