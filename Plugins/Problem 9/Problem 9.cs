@@ -37,7 +37,7 @@ namespace Problem_9
 
             while (lngLimit < 1)
             {
-                Helpers.InputBox.Show(Name, "Enter target sum for a + b + c", ref strLimit);
+                Helpers.InputHelper.Show(Name, "Enter target sum for a + b + c", ref strLimit);
                 if (!Int64.TryParse(strLimit, out lngLimit))
                 {
                     lngLimit = 0;

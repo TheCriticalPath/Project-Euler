@@ -30,7 +30,7 @@ namespace Project_Euler_Plugin1
 
             while (lngLimit < 1)
             {
-                Helpers.InputBox.Show(Name, "Enter limit", ref strLimit);
+                Helpers.InputHelper.Show(Name, "Enter limit", ref strLimit);
                 if (!Int64.TryParse(strLimit, out lngLimit))
                 {
                     lngLimit = 0;
@@ -55,24 +55,15 @@ namespace Project_Euler_Plugin1
             //Binomial Coeffiecient
             int x = (int)_limit * 2;
             int y = (int)_limit;
-            double xF = Factorial(x);
-            double yF = Factorial(y);
-            double x_minus_yF = Factorial(x - y);
+            double xF = MathHelper.Factorial(x);
+            double yF = MathHelper.Factorial(y);
+            double x_minus_yF = MathHelper.Factorial(x - y);
             double value = (xF) / (yF * x_minus_yF);
             
             return string.Format("The equation f(x)=(2x)!/(x!(2x-x)!). f({0}) = {1}", _limit, value);
         }
 
 
-        public double Factorial(int x)
-        {
-            double retVal = 1D;
-            for (int i = 1; i <= x; i++)
-            {
-                retVal *= i;
-            }
-            return retVal;
-        }
 
     }
 }

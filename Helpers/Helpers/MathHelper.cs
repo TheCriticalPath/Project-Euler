@@ -3,11 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Numerics;
 namespace Helpers
 {
     public static class MathHelper
     {
+        public static int SumDigits(this string s)
+        {
+            int v = 0;
+            for (int i = 0; i < s.Length; i++)
+            {
+                v += int.Parse(s[i].ToString());
+            }
+            return v;
+        }
+
+        public static long SumDigits(this long[] l)
+        {
+            long v = 0;
+            for (int i = 0; i < l.Length; i++)
+            {
+                v += l[i];
+            }
+            return v;
+        }
         public static int GCD(int a, int b)
         {
             int Remainder;
@@ -185,7 +204,7 @@ namespace Helpers
 
                 retVal += NumberWords[floor] + " " + HUNDRED;
                 if (mod != 0)
-                { 
+                {
                     retVal += " " + AND + " " + mod.ConvertToWord(); ;
                 };
             }
@@ -195,6 +214,129 @@ namespace Helpers
             }
 
             return retVal;
+        }
+
+        public static BigInteger ToFactorial(this BigInteger x){
+            return Factorial(x);
+        }
+        public static BigInteger Factorial(BigInteger x)
+        {
+            BigInteger retVal = 1;
+            for (BigInteger i = 1; i <= x; i++)
+            {
+                retVal *= i;
+            }
+            return retVal;
+
+        }
+        public static int ToInt(this string s)
+        {
+            return int.Parse(s);
+        }
+        public static BigInteger Factorial(long x)
+        {
+            BigInteger retVal = 1;
+            for (BigInteger i = 1; i <= x; i++)
+            {
+                retVal *= i;
+            }
+            return retVal;
+
+        }
+        public static double Factorial(int x)
+        {
+            double retVal = 1D;
+            for (int i = 1; i <= x; i++)
+            {
+                retVal *= i;
+            }
+            return retVal;
+        }
+        public static int CountFactors(long triangleNumber)
+        {
+            int count = 0;
+            int end = (int)Math.Sqrt(triangleNumber);
+            for (int i = 1; i < end; i++)
+            {
+                if (triangleNumber % i == 0)
+                {
+                    count += 2;
+                }
+            }
+            if (end * end == triangleNumber) { count++; }
+            return count;
+        }
+        public static BigInteger SumOfFirstNNaturalNumbers(BigInteger n)
+        {
+            return (n * (n + 1)) / 2;
+        }
+
+        public static int SumOfFactors(int number)
+        {
+            int sqrtOfNumber = (int)Math.Sqrt(number);
+            int sum = 1;
+
+            //If the number is a perfect square
+            //Count the squareroot once in the sum of factors
+            if (number == sqrtOfNumber * sqrtOfNumber)
+            {
+                sum += sqrtOfNumber;
+                sqrtOfNumber--;
+            }
+
+            for (int i = 2; i <= sqrtOfNumber; i++)
+            {
+                if (number % i == 0)
+                {
+                    sum = sum + i + (number / i);
+                }
+            }
+
+            return sum;
+        }
+        public static long[] GetDivisors(long number)
+        {
+            List<long> divisors = new List<long>();
+            if (number > 1)
+            {
+                int end = (int)Math.Ceiling(Math.Sqrt(number));
+                for (int i = 2; i < end; i++)
+                {
+                    if (number % i == 0)
+                    {
+                        divisors.Add(i);
+                        divisors.Add(number / i);
+                    }
+                }
+                if (end * end == number && number > 1)
+                {
+                    divisors.Add(end);
+                }
+                divisors.Add(1);
+            }
+            System.Diagnostics.Debug.WriteLine(number + ": " + divisors.Count() + " = " + divisors.ToArray<long>().SumDigits());
+            return divisors.ToArray<long>();
+        }
+        public static void SwapIndexes(this List<string> List, int pos1, int pos2)
+        {
+            string s = List[pos1];
+            List[pos1] = List[pos2];
+            List[pos2] = s;
+        }
+
+
+        public static int FindCeil(List<string> str, int first, int l, int h)
+        {
+            // initialize index of ceiling element
+            int ceilIndex = l;
+
+            // Now iterate through rest of the elements and find
+            // the smallest character greater than 'first'
+            for (int i = l + 1; i <= h; i++)
+                if (str[i].ToInt() > first && str[i].ToInt() < str[ceilIndex].ToInt())
+                    ceilIndex = i;
+
+            return ceilIndex;
         }
 
     }

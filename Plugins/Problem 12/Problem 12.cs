@@ -30,7 +30,7 @@ namespace Problem_12
 
             while (lngLimit < 1)
             {
-                Helpers.InputBox.Show(Name, "Enter number for factors", ref strLimit);
+                Helpers.InputHelper.Show(Name, "Enter number for factors", ref strLimit);
                 if (!Int64.TryParse(strLimit, out lngLimit))
                 {
                     lngLimit = 0;
@@ -67,7 +67,7 @@ namespace Problem_12
                         numFactors = PollardRhoHeuristic(triangleNumber);
                     }
                     else {
-                        numFactors = CountFactors(triangleNumber);
+                        numFactors = MathHelper.CountFactors(triangleNumber);
                     }
                     if (numFactors > maxFactors) { maxFactors = numFactors; curCandidate = triangleNumber; }
                 }
@@ -108,20 +108,5 @@ namespace Problem_12
             //System.Diagnostics.Debug.WriteLine("{0} has {1} factors.", n,factors.Count() + 2);
             return factors.Count() + 2; // add 2 for 1 and n;
         }
-
-        public int CountFactors(long triangleNumber)
-        {
-            int count = 0;
-            int end = (int)Math.Sqrt(triangleNumber);
-            for (int i = 1; i < end; i++)
-            {
-                if (triangleNumber % i == 0)
-                {
-                    count+=2;
-                }
-            }
-            if (end * end == triangleNumber) { count++; }
-            return count;
-        }
-    }
+  }
 }

@@ -37,7 +37,7 @@ namespace Problem_4
 
             while (lngLimit < 1)
             {
-                Helpers.InputBox.Show(Name, "Enter length of multiple?", ref strLimit);
+                Helpers.InputHelper.Show(Name, "Enter length of multiple?", ref strLimit);
                 if (!Int64.TryParse(strLimit, out lngLimit))
                 {
                     lngLimit = 0;

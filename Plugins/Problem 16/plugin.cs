@@ -7,6 +7,7 @@ using PluginInterface;
 using System.Windows.Forms;
 using System.ComponentModel.Composition;
 using System.Numerics;
+using Helpers;
 namespace Problem_16
 {
     [Export(typeof(IEulerPlugin))]
@@ -30,7 +31,7 @@ namespace Problem_16
 
             while (lngLimit < 1)
             {
-                Helpers.InputBox.Show(Name, "Enter value for x", ref strLimit);
+                Helpers.InputHelper.Show(Name, "Enter value for x", ref strLimit);
                 if (!Int64.TryParse(strLimit, out lngLimit))
                 {
                     lngLimit = 0;
@@ -51,13 +52,7 @@ namespace Problem_16
         }
         public string PowerDigitsSum(int power) {
             BigInteger x = BigInteger.Pow(2, power);
-
-            String s = x.ToString("F0");
-            int v = 0;
-            for (int i = 0; i < s.Length; i++) {
-                v += int.Parse(s[i].ToString());
-            }
-            return string.Format("The sum of the digits in 2^{0} is {1}", power, v);
+            return string.Format("The sum of the digits in 2^{0} is {1}", power, x.ToString("F0").SumDigits());
         }
 
     }

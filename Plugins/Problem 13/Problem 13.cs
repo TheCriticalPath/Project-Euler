@@ -30,7 +30,7 @@ namespace Problem_13
 
             while (lngLimit < 1)
             {
-                Helpers.InputBox.Show(Name, "How many significant digits?", ref strLimit);
+                Helpers.InputHelper.Show(Name, "How many significant digits?", ref strLimit);
                 if (!Int64.TryParse(strLimit, out lngLimit))
                 {
                     lngLimit = 0;

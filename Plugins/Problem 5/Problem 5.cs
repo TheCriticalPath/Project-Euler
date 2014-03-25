@@ -82,7 +82,7 @@ namespace Problem_5
 
             while (lngLimit < 1)
             {
-                Helpers.InputBox.Show(Name, "Upper Limit", ref strLimit);
+                Helpers.InputHelper.Show(Name, "Upper Limit", ref strLimit);
                 if (!Int64.TryParse(strLimit, out lngLimit))
                 {
                     lngLimit = 0;

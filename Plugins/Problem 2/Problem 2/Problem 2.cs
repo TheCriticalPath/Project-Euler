@@ -36,7 +36,7 @@ namespace Problem_2
 
             while (intLimit < 1)
             {
-                Helpers.InputBox.Show(Name, "Enter Upper Limit", ref strLimit);
+                Helpers.InputHelper.Show(Name, "Enter Upper Limit", ref strLimit);
                 if (!int.TryParse(strLimit, out intLimit))
                 {
                     intLimit = 0;

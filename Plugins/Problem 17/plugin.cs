@@ -30,7 +30,7 @@ namespace Problem_17
 
             while (lngLimit < 1)
             {
-                Helpers.InputBox.Show(Name, "Enter end number", ref strLimit);
+                Helpers.InputHelper.Show(Name, "Enter end number", ref strLimit);
                 if (!Int64.TryParse(strLimit, out lngLimit))
                 {
                     lngLimit = 0;

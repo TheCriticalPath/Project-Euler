@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace Helpers
 {
-    public class InputBox
+    public class InputHelper
     {
         public static DialogResult Show(string title, string promptText, ref string value)
         {
