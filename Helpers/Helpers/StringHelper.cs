@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace Helpers
 {
-    public class StringHelper
-    { 
-        
+    public static class StringHelper
+    {
+        public static string JoinInt(this int[] array) {
+            StringBuilder retval = new StringBuilder();
+            for (int i = 0; i < array.Length; i++) {
+                retval.AppendFormat("{0},", array[i]);
+            }
+            return retval.ToString(0, retval.Length - 1);
+         }
     }
 }
