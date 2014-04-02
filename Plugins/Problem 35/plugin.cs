@@ -98,7 +98,7 @@ How many circular primes are there below one million?";
 
 
 
-            return string.Format("There are {0} circular primes below one million", count);
+            return string.Format("There are {0} circular primes less than {1}", count,limit);
         }
         private int RotateNumber(int i) {
             int r = i;
