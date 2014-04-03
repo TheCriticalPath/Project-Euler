@@ -64,25 +64,54 @@ d1 × d10 × d100 × d1000 × d10000 × d100000 × d1000000";
             return context;
         }
 
-        public string BruteForce() {
+        public string BruteForce()
+        {
 
             int product = 1;
+            int prevLength = 0;
             string s = string.Empty;
             int index = 1;
             do
             {
-                s += index.ToString();
+                s = index.ToString();
+                if ((prevLength < 10 && prevLength + s.Length > 10) ||
+                    (prevLength < 100 && prevLength + s.Length > 100) ||
+                    (prevLength < 1000 && prevLength + s.Length > 1000) ||
+                    (prevLength < 10000 && prevLength + s.Length > 10000) ||
+                    (prevLength < 100000 && prevLength + s.Length > 100000) ||
+                    (prevLength < 1000000 && prevLength + s.Length > 1000000))
+                {
+                    for (int s1 = 1; s1 <= s.Length; s1++)
+                    {
+                        switch (prevLength + s1)
+                        {
+                            case 10:
+                                product *= int.Parse(s.Substring(s1 - 1, 1));
+                                break;
+                            case 100:
+                                product *= int.Parse(s.Substring(s1 - 1, 1));
+                                break;
+                            case 1000:
+                                product *= int.Parse(s.Substring(s1 - 1, 1));
+                                break;
+                            case 10000:
+                                product *= int.Parse(s.Substring(s1 - 1, 1));
+                                break;
+                            case 100000:
+                                product *= int.Parse(s.Substring(s1 - 1, 1));
+                                break;
+                            case 1000000:
+                                product *= int.Parse(s.Substring(s1 - 1, 1));
+                                break;
+                        }
+                    }
+                }
+
+                prevLength += s.Length;
                 index++;
-            } while (s.Length <= 1000000);
+            } while (prevLength <= 1000000);
 
-            product = int.Parse(s.Substring(0,1)) * 
-                      int.Parse(s.Substring(9,1)) * 
-                      int.Parse(s.Substring(99,1)) * 
-                      int.Parse(s.Substring(999,1)) * 
-                      int.Parse(s.Substring(9999,1)) * 
-                      int.Parse(s.Substring(99999,1)) *
-                      int.Parse(s.Substring(999999,1));
-
+          
 
             return string.Format("The Product Is {0}", product);
         }
