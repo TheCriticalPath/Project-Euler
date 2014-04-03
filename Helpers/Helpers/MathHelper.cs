@@ -40,6 +40,12 @@ namespace Helpers
 
             return a;
         }
+
+        public static bool IsPrime(this int num)
+        {
+            return IsPrime((Int64)num);
+        }
+
         private static readonly int[] Primes =
         new int[] { 2, 3, 5, 7, 11, 13, 17, 19, 23,
                     29, 31, 37, 41, 43, 47, 53, 59,
@@ -216,7 +222,8 @@ namespace Helpers
             return retVal;
         }
 
-        public static BigInteger ToFactorial(this BigInteger x){
+        public static BigInteger ToFactorial(this BigInteger x)
+        {
             return Factorial(x);
         }
         public static BigInteger Factorial(BigInteger x)

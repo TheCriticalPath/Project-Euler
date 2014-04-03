@@ -40,7 +40,7 @@ namespace Helpers
                     r = string.Format("{0}{1}", s.Substring(1, s.Length - 1), s.Substring(0, 1));
                     break;
                 case SHIFTDIRECTION.SHIFTRIGHT_CIRCULAR:
-                    r = string.Format("{0}{1}", s.Substring(s.Length-1,1),s.Substring(0, s.Length - 1));
+                    r = string.Format("{0}{1}", s.Substring(s.Length - 1, 1), s.Substring(0, s.Length - 1));
                     break;
                 default:
                     break;
@@ -48,28 +48,30 @@ namespace Helpers
             return r;
         }
 
-        public static bool IsPanDigital(this string s) {
+        public static bool IsPanDigital(this string s)
+        {
             bool retVal = false;
             char chr = new char();
             int index = 0;
-            if (s.Length == 9)
+            int origLen = s.Length;
+            retVal = true;
+            
+            for (int i = 1; i <= origLen; i++)
             {
-                retVal = true;
-                for (int i = 1; i < 10; i++)
+                chr = Convert.ToChar(i.ToString());
+                index = s.IndexOf(chr);
+                if (index >= 0)
                 {
-                    chr = Convert.ToChar(i.ToString());
-                    index = s.IndexOf(chr);
-                    if (index >= 0)
-                    {
-                        s = s.Remove(index, 1);
-                    }
-                    else
-                    {
-                        retVal = false;
-                        break;
-                    }
+                    s = s.Remove(index, 1);
+                }
+                else
+                {
+                    retVal = false;
+                    break;
                 }
             }
+            if (s.Length > 0) { retVal = false; }
+
             return retVal;
         }
     }
