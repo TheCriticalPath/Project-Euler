@@ -66,7 +66,12 @@ HINT: Some products can be obtained in more than one way so be sure to only incl
             for (int a = 1; a < 2000; a++) {
                 for (int b = 1; b < 2000; b++)
                 {
-                    IsPanDigitalProduct(a, b);
+                 
+                    if (IsPanDigitalProduct(a, b) && !products.Contains(a*b))
+                    {
+                        products.Add(a*b);
+                        System.Diagnostics.Debug.WriteLine(string.Format("{0} * {1} = {2}", a, b, a*b));
+                    }
                 }
             }
             sum = products.Sum();
@@ -78,35 +83,10 @@ HINT: Some products can be obtained in more than one way so be sure to only incl
         {
             bool retVal = false;
             int c = a * b;
-            int aLen = a.ToString().Length;
-            int bLen = b.ToString().Length;
-            int cLen = c.ToString().Length;
 
-            string str = a.ToString() + b.ToString() + (a * b).ToString();
-            char chr = new char();
-            int index = 0;
-            if (aLen + bLen + cLen == 9)
-            {
-                retVal = true;
-                for (int i = 1; i < 10; i++)
-                {
-                    chr = Convert.ToChar(i.ToString());
-                    index = str.IndexOf(chr);
-                    if (index >= 0)
-                    {
-                        str = str.Remove(index, 1);
-                    }
-                    else
-                    {
-                        retVal = false;
-                        break;
-                    }
-                }
-            }
-            if(retVal && !products.Contains(c)){
-                products.Add(c);
-                System.Diagnostics.Debug.WriteLine(string.Format("{0} * {1} = {2}",a,b,c));
-            }
+            string str = a.ToString() + b.ToString() + c.ToString();
+            retVal = str.IsPanDigital();
+        
             return retVal;
         }
     }

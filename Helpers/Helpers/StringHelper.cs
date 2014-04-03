@@ -47,7 +47,30 @@ namespace Helpers
             }
             return r;
         }
-       
 
+        public static bool IsPanDigital(this string s) {
+            bool retVal = false;
+            char chr = new char();
+            int index = 0;
+            if (s.Length == 9)
+            {
+                retVal = true;
+                for (int i = 1; i < 10; i++)
+                {
+                    chr = Convert.ToChar(i.ToString());
+                    index = s.IndexOf(chr);
+                    if (index >= 0)
+                    {
+                        s = s.Remove(index, 1);
+                    }
+                    else
+                    {
+                        retVal = false;
+                        break;
+                    }
+                }
+            }
+            return retVal;
+        }
     }
 }
