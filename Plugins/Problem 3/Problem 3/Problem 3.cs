@@ -12,6 +12,7 @@ namespace Problem_3
     [Export(typeof(IEulerPlugin))]
     public class Problem_3 : IEulerPlugin
     {
+        public bool IsAsync { get { return false; } }
         public long _limit;
         public bool ImplementsGetInput { get { return true; } }
         public int ID { get { return 3; } }
@@ -27,7 +28,10 @@ namespace Problem_3
             context.strResultLongText = GetLargestPrimeFactor(_limit);
             return context;
         }
-
+        public async Task<IEulerPluginContext> PerformActionAsync(IEulerPluginContext context)
+        {
+            throw new NotImplementedException();
+        }
         private long GetLimit()
         {
             long lngLimit = 0;

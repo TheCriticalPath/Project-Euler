@@ -9,11 +9,14 @@ namespace PluginInterface
     public interface IEulerPluginContext
     {
         string strResultLongText { get; set; }
+        TimeSpan spnDuration { get; set; }
+        
     }
 
     public class EulerPluginContext : IEulerPluginContext
     {
         public string strResultLongText { get; set; }
+        public TimeSpan spnDuration { get; set; }
     }
 
 }

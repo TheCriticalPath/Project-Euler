@@ -13,6 +13,7 @@ namespace Problem_27
     [Export(typeof(IEulerPlugin))]
     public class EulerPlugin : IEulerPlugin
     {
+        public bool IsAsync { get { return false; } }
         public long _limit;
         public bool ImplementsGetInput { get { return true; } }
         public int ID { get { return 27; } }
@@ -59,6 +60,10 @@ Find the product of the coefficients, a and b, for the quadratic expression that
 
             }
             return lngLimit;
+        }
+        public async Task<IEulerPluginContext> PerformActionAsync(IEulerPluginContext context)
+        {
+            throw new NotImplementedException();
         }
         public void PerformGetInput(IEulerPluginContext context)
         {

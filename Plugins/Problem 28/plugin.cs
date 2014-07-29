@@ -13,6 +13,7 @@ namespace Problem_28
     [Export(typeof(IEulerPlugin))]
     public class EulerPlugin : IEulerPlugin
     {
+        public bool IsAsync { get { return false; } }
         public long _limit;
         public bool ImplementsGetInput { get { return true; } }
         public int ID { get { return 28; } }
@@ -65,7 +66,10 @@ What is the sum of the numbers on the diagonals in a 1001 by 1001 spiral formed 
             context.strResultLongText = BruteForce(_limit);
             return context;
         }
-
+        public async Task<IEulerPluginContext> PerformActionAsync(IEulerPluginContext context)
+        {
+            throw new NotImplementedException();
+        }
         public string BruteForce(long limit)
         {
             BigInteger ans = new BigInteger();

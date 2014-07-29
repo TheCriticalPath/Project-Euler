@@ -12,6 +12,7 @@ namespace Problem_5
     [Export(typeof(IEulerPlugin))]
     public class Problem_5 : IEulerPlugin
     {
+        public bool IsAsync { get { return false; } }
         public long _limit;
         public bool ImplementsGetInput { get { return true; } }
         public int ID { get { return 5; } }
@@ -22,7 +23,10 @@ namespace Problem_5
 
         public string Title { get { return string.Format("Smallest Multiple",ID); } }
         public string Description { get { return "2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder. What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?"; } }
-
+        public async Task<IEulerPluginContext> PerformActionAsync(IEulerPluginContext context)
+        {
+            throw new NotImplementedException();
+        }
         public Problem_5() { }
         public IEulerPluginContext PerformAction(IEulerPluginContext context)
         {

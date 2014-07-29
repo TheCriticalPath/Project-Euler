@@ -13,6 +13,7 @@ namespace Problem_25
     [Export(typeof(IEulerPlugin))]
     public class EulerPlugin : IEulerPlugin
     {
+        public bool IsAsync { get { return false; } }
         public long _limit;
         public bool ImplementsGetInput { get { return true; } }
         public int ID { get { return 25; } }
@@ -23,7 +24,10 @@ namespace Problem_25
         public string Title { get { return string.Format("1000-digit Fibonacci Number", ID); } }
         public string Description { get { return "What is the first term in the Fibonacci sequence to contain 1000 digits?"; } }
         public EulerPlugin() { }
-
+        public async Task<IEulerPluginContext> PerformActionAsync(IEulerPluginContext context)
+        {
+            throw new NotImplementedException();
+        }
         private long GetLimit()
         {
             long lngLimit = 0;

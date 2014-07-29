@@ -12,6 +12,7 @@ namespace Problem_9
     [Export(typeof(IEulerPlugin))]
     public class Problem_9 : IEulerPlugin
     {
+        public bool IsAsync { get { return false; } }
         public long _limit;
         public bool ImplementsGetInput { get { return true; } }
         public int ID { get { return 9; } }
@@ -29,7 +30,10 @@ namespace Problem_9
             context.strResultLongText = GetProductOfPythagoreanTriple(_limit);
             return context;
         }
-
+        public async Task<IEulerPluginContext> PerformActionAsync(IEulerPluginContext context)
+        {
+            throw new NotImplementedException();
+        }
         private long GetLimit()
         {
             long lngLimit = 0;

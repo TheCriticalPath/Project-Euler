@@ -12,6 +12,7 @@ namespace Problem_22
     [Export(typeof(IEulerPlugin))]
     public class EulerPlugin : IEulerPlugin
     {
+        public bool IsAsync { get { return false; } }
         private double CHAR_VALUE_A;
         private List<string> _Input;
         public long _limit;
@@ -28,7 +29,10 @@ What is the total of all the name scores in the file?"; } }
         public EulerPlugin() {
             CHAR_VALUE_A = 'A' - 1;
         }
-
+        public async Task<IEulerPluginContext> PerformActionAsync(IEulerPluginContext context)
+        {
+            throw new NotImplementedException();
+        }
         private long GetLimit()
         {
             long lngLimit = 0;

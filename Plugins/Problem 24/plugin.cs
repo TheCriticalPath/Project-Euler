@@ -17,6 +17,7 @@ namespace Problem_24
         public string _characters;
         public bool ImplementsGetInput { get { return true; } }
         public int ID { get { return 24; } }
+        public bool IsAsync { get { return false; } }
         public string Name
         {
             get { return string.Format("Problem {0}: {1}", ID, Title); }
@@ -24,7 +25,10 @@ namespace Problem_24
         public string Title { get { return string.Format("Lexicographic permutations", ID); } }
         public string Description { get { return "What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9?"; } }
         public EulerPlugin() { }
-
+        public async Task<IEulerPluginContext> PerformActionAsync(IEulerPluginContext context)
+        {
+            throw new NotImplementedException();
+        }
         private long GetLimit()
         {
             long lngLimit = 0;

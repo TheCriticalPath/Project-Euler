@@ -13,6 +13,7 @@ namespace Problem_23
     [Export(typeof(IEulerPlugin))]
     public class EulerPlugin : IEulerPlugin
     {
+        public bool IsAsync { get { return false; } }
         const int SmallestAbundant = 12;
         List<int> AbundantNumbersSums = new List<int>();
         public long _limit;
@@ -59,6 +60,10 @@ Find the sum of all the positive integers which cannot be written as the sum of 
         {
             context.strResultLongText = SumNonAbundantNumbers(_limit);
             return context;
+        }
+        public async Task<IEulerPluginContext> PerformActionAsync(IEulerPluginContext context)
+        {
+            throw new NotImplementedException();
         }
         private string SumNonAbundantNumbers(long limit)
         {

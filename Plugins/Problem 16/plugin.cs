@@ -13,6 +13,8 @@ namespace Problem_16
     [Export(typeof(IEulerPlugin))]
     public class EulerPlugin : IEulerPlugin
     {
+
+        public bool IsAsync { get { return false; } }
         public long _limit;
         public bool ImplementsGetInput { get { return true; } }
         public int ID { get { return 16; } }
@@ -23,7 +25,10 @@ namespace Problem_16
         public string Title { get { return string.Format("Power digit sum", ID); } }
         public string Description { get { return "What is the sum of the digits of the number 2^x?"; } }
         public EulerPlugin() { }
-
+        public async Task<IEulerPluginContext> PerformActionAsync(IEulerPluginContext context)
+        {
+            throw new NotImplementedException();
+        }
         private long GetLimit()
         {
             long lngLimit = 0;

@@ -12,6 +12,7 @@ namespace Problem_1
     public class Problem_1 : IEulerPlugin
     {
         public bool ImplementsGetInput { get { return true; } }
+        public bool IsAsync { get { return false; } }
         public int _limit;
         public int ID { get { return 1; } }
         public string Name
@@ -23,7 +24,10 @@ namespace Problem_1
         {
             get { return "If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9.  The sum of these multiples is 23.  Find the sum of all the multiples of 3 or 5 below 1000."; }
         }
-
+        public async Task<IEulerPluginContext> PerformActionAsync(IEulerPluginContext context)
+        {
+            throw new NotImplementedException();
+        }
         public Problem_1(){ }
 
         // The single point of entry to our plugin.

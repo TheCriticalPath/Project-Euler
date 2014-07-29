@@ -12,6 +12,7 @@ namespace Problem_8
     [Export(typeof(IEulerPlugin))]
     public class Problem_8 : IEulerPlugin
     {
+        public bool IsAsync { get { return false; } }
         public long _limit;
         public string _numericSeries;
         public bool ImplementsGetInput { get { return true; } }
@@ -29,7 +30,10 @@ namespace Problem_8
             context.strResultLongText = GetLargestProductInSeries(_limit, _numericSeries);
             return context;
         }
-
+        public async Task<IEulerPluginContext> PerformActionAsync(IEulerPluginContext context)
+        {
+            throw new NotImplementedException();
+        }
         private long GetLimit()
         {
             long lngLimit = 0;

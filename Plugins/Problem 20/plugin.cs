@@ -13,6 +13,8 @@ namespace Problem_20
     [Export(typeof(IEulerPlugin))]
     public class EulerPlugin : IEulerPlugin
     {
+        public bool IsAsync { get { return false; } }
+
         public long _limit;
         public bool ImplementsGetInput { get { return true; } }
         public int ID { get { return 20; } }
@@ -23,7 +25,10 @@ namespace Problem_20
         public string Title { get { return string.Format("Factorial digit sum", ID); } }
         public string Description { get { return "Find the sum of the digits in the number 100!"; } }
         public EulerPlugin() { }
-
+        public async Task<IEulerPluginContext> PerformActionAsync(IEulerPluginContext context)
+        {
+            throw new NotImplementedException();
+        }
         private long GetLimit()
         {
             long lngLimit = 0;

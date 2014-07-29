@@ -7,11 +7,12 @@ using PluginInterface;
 using System.Windows.Forms;
 using System.ComponentModel.Composition;
 using Helpers;
-namespace Project_Euler_Plugin1
+namespace Problem_15
 {
     [Export(typeof(IEulerPlugin))]
     public class EulerPlugin : IEulerPlugin
     {
+        public bool IsAsync { get { return false; } }
         public long _limit;
         public bool ImplementsGetInput { get { return true; } }
         public int ID { get { return 15; } }
@@ -22,7 +23,10 @@ namespace Project_Euler_Plugin1
         public string Title { get { return string.Format("Lattice Paths ", ID); } }
         public string Description { get { return "Starting in the top left corner of a 2×2 grid, and only being able to move to the right and down, there are exactly 6 routes to the bottom right corner.  How many such routes are there through a 20×20 grid?"; } }
         public EulerPlugin() { }
-
+        public async Task<IEulerPluginContext> PerformActionAsync(IEulerPluginContext context)
+        {
+            throw new NotImplementedException();
+        }
         private long GetLimit()
         {
             long lngLimit = 0;

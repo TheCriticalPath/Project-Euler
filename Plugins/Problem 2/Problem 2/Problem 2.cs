@@ -11,7 +11,8 @@ namespace Problem_2
 {
     [Export(typeof(IEulerPlugin))]
      public class Problem_2:IEulerPlugin
-    {
+     {
+         public bool IsAsync { get { return false; } }
         public int _limit;
         public bool ImplementsGetInput { get {return true;}}
         public int ID { get { return 2; } }
@@ -28,7 +29,10 @@ namespace Problem_2
             context.strResultLongText = SumOfEventFibonacci(_limit);
             return context;
         }
-
+        public async Task<IEulerPluginContext> PerformActionAsync(IEulerPluginContext context)
+        {
+            throw new NotImplementedException();
+        }
         private int GetLimit()
         {
             int intLimit = 0;

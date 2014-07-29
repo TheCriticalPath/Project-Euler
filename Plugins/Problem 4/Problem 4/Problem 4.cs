@@ -12,6 +12,7 @@ namespace Problem_4
     [Export(typeof(IEulerPlugin))]
     public class Problem_4 : IEulerPlugin
     {
+        public bool IsAsync { get { return false; } }
         public long _limit;
         public bool ImplementsGetInput { get { return true; } }
         public int ID { get { return 4; } }
@@ -29,7 +30,10 @@ namespace Problem_4
             context.strResultLongText = GetLargestPalindromicProduct(_limit);
             return context;
         }
-
+        public async Task<IEulerPluginContext> PerformActionAsync(IEulerPluginContext context)
+        {
+            throw new NotImplementedException();
+        }
         private long GetLimit()
         {
             long lngLimit = 0;

@@ -12,6 +12,7 @@ namespace Problem_13
     [Export(typeof(IEulerPlugin))]
     public class Problem_13 : IEulerPlugin
     {
+        public bool IsAsync { get { return false; } }
         public long _limit;
         public bool ImplementsGetInput { get { return true; } }
         public int ID { get { return 13; } }
@@ -22,7 +23,10 @@ namespace Problem_13
         public string Title { get { return string.Format("Large Sums: {0}", ID); } }
         public string Description { get { return "Work out the first ten digits of the sum of the following one-hundred 50-digit numbers."; } }
         public Problem_13() { }
-
+        public async Task<IEulerPluginContext> PerformActionAsync(IEulerPluginContext context)
+        {
+            throw new NotImplementedException();
+        }
         private long GetLimit()
         {
             long lngLimit = 0;

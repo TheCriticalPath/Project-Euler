@@ -14,6 +14,7 @@ namespace Problem_26
     [Export(typeof(IEulerPlugin))]
     public class EulerPlugin : IEulerPlugin
     {
+        public bool IsAsync { get { return false; } }
         public long _limit;
         public bool ImplementsGetInput { get { return true; } }
         public int ID { get { return 26; } }
@@ -24,7 +25,10 @@ namespace Problem_26
         public string Title { get { return string.Format("Reciprocal cycles", ID); } }
         public string Description { get { return "Find the value of d < 1000 for which 1/d contains the longest recurring cycle in its decimal fraction part."; } }
         public EulerPlugin() { }
-
+        public async Task<IEulerPluginContext> PerformActionAsync(IEulerPluginContext context)
+        {
+            throw new NotImplementedException();
+        }
         private long GetLimit()
         {
             long lngLimit = 0;

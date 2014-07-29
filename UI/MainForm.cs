@@ -33,9 +33,17 @@ namespace UI
             
         }
 
-        private void btnExecutePlugin_Click(object sender, EventArgs e)
+        private async void PerformActionAsync(IEulerPlugin plugin,  IEulerPluginContext context) {
+
+            Task<IEulerPluginContext> tContext = plugin.PerformActionAsync(context);
+            context = await tContext;
+            textBox1.AppendText(String.Format("{0}{1}", context.strResultLongText, System.Environment.NewLine));
+            textBox1.AppendText(string.Format("Results Calculated in: {0} ms{1}", context.spnDuration.TotalMilliseconds, Environment.NewLine));
+        }
+
+        private  void btnExecutePlugin_Click(object sender, EventArgs e)
         {
-            TimeSpan ts;
+ 
             DateTime dtStart, dtEnd;
             IEulerPluginContext context = new EulerPluginContext();
             IEulerPlugin plugin = (IEulerPlugin)dataGridView1.SelectedRows[0].DataBoundItem;
@@ -43,12 +51,19 @@ namespace UI
             {
                 plugin.PerformGetInput(context);
             }
-            dtStart = DateTime.Now;
-            context = plugin.PerformAction(context);
-            dtEnd = DateTime.Now;
-            ts = dtEnd.Subtract(dtStart);
-            textBox1.AppendText(String.Format("{0}{1}", context.strResultLongText, System.Environment.NewLine));
-            textBox1.AppendText(string.Format("Results Calculated in: {0} ms{1}", ts.TotalMilliseconds, Environment.NewLine));
+            if (plugin.IsAsync) {
+                PerformActionAsync(plugin, context);
+            }
+            else
+            {
+                dtStart = DateTime.Now;
+                context = plugin.PerformAction(context);
+                dtEnd = DateTime.Now;
+                context.spnDuration = dtEnd.Subtract(dtStart);
+                 textBox1.AppendText(String.Format("{0}{1}", context.strResultLongText, System.Environment.NewLine));
+                textBox1.AppendText(string.Format("Results Calculated in: {0} ms{1}", context.spnDuration.TotalMilliseconds, Environment.NewLine));
+            }
+           
         }
 
         private void btnClearConsole_Click(object sender, EventArgs e)

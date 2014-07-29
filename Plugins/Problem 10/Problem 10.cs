@@ -12,6 +12,7 @@ namespace Problem_10
     [Export(typeof(IEulerPlugin))]
     public class Problem_10 : IEulerPlugin
     {
+        public bool IsAsync { get { return false; } }
         public long _limit;
         public bool ImplementsGetInput { get { return true; } }
         public int ID { get { return 10; } }
@@ -30,7 +31,10 @@ namespace Problem_10
             context.strResultLongText = GetSumOfFirstNPrimes(_limit);
             return context;
         }
-
+        public async Task<IEulerPluginContext> PerformActionAsync(IEulerPluginContext context)
+        {
+            throw new NotImplementedException();
+        }
         private long GetLimit()
         {
             long lngLimit = 0;

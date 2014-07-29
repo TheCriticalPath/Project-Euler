@@ -13,12 +13,17 @@ namespace Problem_34
     [Export(typeof(IEulerPlugin))]
     public class EulerPlugin : IEulerPlugin
     {
+        public bool IsAsync { get { return false; } }
         public long _limit;
         public bool ImplementsGetInput { get { return false; } }
         public int ID { get { return 34; } }
         public string Name
         {
             get { return string.Format("Problem {0}: {1}", ID, Title); }
+        }
+        public async Task<IEulerPluginContext> PerformActionAsync(IEulerPluginContext context)
+        {
+            throw new NotImplementedException();
         }
         public string Title { get { return string.Format("Digit Factorials", ID); } }
         public string Description

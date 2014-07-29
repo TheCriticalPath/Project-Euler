@@ -12,6 +12,7 @@ namespace Problem_18
     [Export(typeof(IEulerPlugin))]
     public class EulerPlugin : IEulerPlugin
     {
+        public bool IsAsync { get { return false; } }
         public long _limit;
         public bool ImplementsGetInput { get { return false; } }
         public int ID { get { return 18; } }
@@ -25,7 +26,10 @@ namespace Problem_18
         public string[] Triangle;
         public EulerPlugin() {
         }
-
+        public async Task<IEulerPluginContext> PerformActionAsync(IEulerPluginContext context)
+        {
+            throw new NotImplementedException();
+        }
         private long GetLimit()
         {
             long lngLimit = 0;

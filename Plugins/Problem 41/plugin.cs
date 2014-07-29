@@ -13,6 +13,7 @@ namespace Problem_41
     [Export(typeof(IEulerPlugin))]
     public class EulerPlugin : IEulerPlugin
     {
+        public bool IsAsync { get { return true; } }
         public long _limit;
         public bool ImplementsGetInput { get { return false; } }
         public int ID { get { return 41; } }
@@ -54,17 +55,48 @@ What is the largest n-digit pandigital prime that exists?
         {
             _limit = GetLimit();
         }
-        public IEulerPluginContext PerformAction(IEulerPluginContext context)
-        {
-            // need a more elegant solution.
-            context.strResultLongText = BruteForce();
-            return context;
-        }
+        public IEulerPluginContext PerformAction(IEulerPluginContext context) {
 
-        public string BruteForce()
+            DateTime dtStart, dtEnd;
+            dtStart = DateTime.Now;
+            context.strResultLongText = BruteForce();
+            dtEnd = DateTime.Now;
+            context.spnDuration = dtEnd.Subtract(dtStart);
+            return context;
+
+        }
+       public   Task<IEulerPluginContext> PerformActionAsync(IEulerPluginContext context)
+        {
+            return Task.Factory.StartNew(() =>
+            {
+                // need a more elegant solution.
+                DateTime dtStart, dtEnd;
+                dtStart = DateTime.Now;
+                Task<String> s = BruteForceAsync();
+                dtEnd = DateTime.Now;
+                context.strResultLongText = s.Result;
+                context.spnDuration = dtEnd.Subtract(dtStart);
+                return context;
+            });
+        }
+       public string BruteForce() {
+           int prime = 0;
+           for (int i = 1000000; i <= 7654321; i++)
+           {
+               if (!(i % 5 == 0))
+               {
+                   if (i.IsPrime() && i.ToString().IsPanDigital())
+                   {
+                       prime = i;
+                   }
+               }
+           }
+           return string.Format("The largest Pandigital Prime is {0}", prime);
+       }
+        async Task<string> BruteForceAsync()
         {
             int prime = 0;
-            for (int i = 2143; i < 1000000000; i++)
+            for (int i = 1000000; i <= 7654321; i++)
             {
                 if (!(i % 5 == 0))
                 {
