@@ -54,24 +54,29 @@ namespace Helpers
             char chr = new char();
             int index = 0;
             int origLen = s.Length;
+            int i = 0;
             retVal = true;
-            
-            for (int i = 1; i <= origLen; i++)
+            try
             {
-                chr = Convert.ToChar(i.ToString());
-                index = s.IndexOf(chr);
-                if (index >= 0)
+                for ( i = 0; i <= origLen - 1; i++)
                 {
-                    s = s.Remove(index, 1);
+                    chr = Convert.ToChar(i.ToString());
+                    index = s.IndexOf(chr);
+                    if (index >= 0)
+                    {
+                        s = s.Remove(index, 1);
+                    }
+                    else
+                    {
+                        retVal = false;
+                        break;
+                    }
                 }
-                else
-                {
-                    retVal = false;
-                    break;
-                }
+                if (s.Length > 0) { retVal = false; }
             }
-            if (s.Length > 0) { retVal = false; }
-
+            catch (Exception e) {
+                System.Diagnostics.Debug.WriteLine(e.Source);
+            }
             return retVal;
         }
     }

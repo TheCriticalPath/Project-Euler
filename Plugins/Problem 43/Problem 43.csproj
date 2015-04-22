@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{445E516D-E81D-4A03-95C8-482685854A72}</ProjectGuid>
+    <ProjectGuid>{7ACDB675-4808-439B-8EFF-E9AAEC151F5D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Problem_42</RootNamespace>
-    <AssemblyName>Problem 42</AssemblyName>
+    <RootNamespace>Problem_43</RootNamespace>
+    <AssemblyName>Problem 43</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

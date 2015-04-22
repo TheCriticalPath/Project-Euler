@@ -85,14 +85,14 @@ Find the product of the coefficients, a and b, for the quadratic expression that
             {
                 for (b = (-1L * limit); b < limit; b++)
                 {
-                    if (MathHelper.IsPrime(b))
+                    if (b.IsPrime())
                     {
                         n = -1;
                         do
                         {
                             n++;
                             answer = Math.Pow(n, 2) + (a * n) + b;
-                        } while (MathHelper.IsPrime((long)answer));
+                        } while (answer.IsPrime());
                         if (n > n1)
                         {
                             n1 = n; a1 = a; b1 = b;

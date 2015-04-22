@@ -8,6 +8,10 @@ namespace Helpers
 {
     public static class MathHelper
     {
+        public struct QuadraticResult
+        {
+            public double n1, n2;
+        }
         public static int SumDigits(this string s)
         {
             int v = 0;
@@ -41,9 +45,17 @@ namespace Helpers
             return a;
         }
 
+        public static bool IsPrime(this double num)
+        {
+            return _IsPrime((Int64)num);
+        }
+        public static bool IsPrime(this Int64 num)
+        {
+            return _IsPrime(num);
+        }
         public static bool IsPrime(this int num)
         {
-            return IsPrime((Int64)num);
+            return _IsPrime((Int64)num);
         }
 
         private static readonly int[] Primes =
@@ -57,7 +69,7 @@ namespace Helpers
         /// </summary>
         /// <param name="Num">Int64</param>
         /// <returns>bool</returns>
-        public static bool IsPrime(Int64 Num)
+        public static bool _IsPrime(Int64 Num)
         {
             int j;
             bool ret;
@@ -332,6 +344,105 @@ namespace Helpers
         }
 
 
+        public static QuadraticResult GetQuadraticResult(Int64 a, Int64 b, Int64 c, Int64 x = 1)
+        {
+            QuadraticResult qr = new QuadraticResult();
+            qr.n1 = (-b + Math.Sqrt((b * b) - 4 * a * c * x)) / (2 * a);
+            qr.n2 = (-b - Math.Sqrt((b * b) - 4 * a * c * x)) / (2 * a);
+            return qr;
+        }
+        public static bool IsTriangle(this Int64 num)
+        {
+            bool Is = false;
+            QuadraticResult qr = GetQuadraticResult(1, 1, -2, num);
+            if (qr.n1 > 0)
+            {
+                Is = qr.n1 == (Int64)qr.n1;
+            }
+            if (!Is && qr.n2 > 0)
+            {
+                Is = qr.n2 == (Int64)qr.n2;
+            }
+            return Is;
+
+        }
+        public static bool IsPentagonal(this Int64 num)
+        {
+            bool Is = false;
+            QuadraticResult qr = GetQuadraticResult(3, -1, -2, num);
+            if (qr.n1 > 0) { 
+                Is = qr.n1 == (Int64)qr.n1;
+            }
+            if(!Is && qr.n2 > 0){
+                Is = qr.n2 == (Int64)qr.n2;
+            }
+            return Is;
+        }
+        public static bool IsHexagonal(this Int64 num)
+        {
+            bool Is = false;
+            QuadraticResult qr = GetQuadraticResult(2, -1, -1, num);
+            if (qr.n1 > 0)
+            {
+                Is = qr.n1 == (Int64)qr.n1;
+            }
+            if (!Is && qr.n2 > 0)
+            {
+                Is = qr.n2 == (Int64)qr.n2;
+            }
+            return Is;
+        }
+        public static double GetTriangleNumber(this Int64 num)
+        {
+            return ((num * num) + num) / 2;
+        }
+        public static double GetPentagonalNumber(this Int64 num)
+        {
+            return ((3 * (num * num)) - num) / 2;
+        }
+        public static double GetHexagonalNumber(this Int64 num)
+        {
+            return (2 * (num * num)) - num;
+        }
+
+        public static bool HasSubStringDivisibility(this Int64 num)
+        {
+            string strNum = num.ToString();
+            string subStr = "";
+            int intSub = 0;
+
+            for (int i = 1; i <= 7; i++)
+            {
+                subStr = strNum.Substring(i, 3);
+                intSub = int.Parse(subStr);
+                switch (i)
+                {
+                    case 1:
+                        if (intSub % 2 != 0) return false;
+                        break;
+                    case 2:
+                        if (intSub % 3 != 0) return false;
+                        break;
+                    case 3:
+                        if (intSub % 5 != 0) return false;
+                        break;
+                    case 4:
+                        if (intSub % 7 != 0) return false;
+                        break;
+                    case 5:
+                        if (intSub % 11 != 0) return false;
+                        break;
+                    case 6:
+                        if (intSub % 13 != 0) return false;
+                        break;
+                    case 7:
+                        if (intSub % 17 != 0) return false;
+                        break;
+                }
+            }
+            return true;
+        }
+
         public static int FindCeil(List<string> str, int first, int l, int h)
         {
             // initialize index of ceiling element
@@ -345,6 +456,8 @@ namespace Helpers
 
             return ceilIndex;
         }
+
+
 
     }
 }
