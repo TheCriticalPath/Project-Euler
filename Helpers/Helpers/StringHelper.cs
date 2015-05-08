@@ -48,6 +48,12 @@ namespace Helpers
             return r;
         }
 
+        public static string SortWord(this string s)
+        {
+            string retVal = String.Concat(s.OrderBy(c => c));
+            return retVal;
+        }
+
         public static bool IsPanDigital(this string s)
         {
             bool retVal = false;
