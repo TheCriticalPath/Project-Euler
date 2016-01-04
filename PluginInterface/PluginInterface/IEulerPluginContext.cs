@@ -10,13 +10,14 @@ namespace PluginInterface
     {
         string strResultLongText { get; set; }
         TimeSpan spnDuration { get; set; }
-        
+        Dictionary<string, string> dctParameters { get; set; }
     }
 
     public class EulerPluginContext : IEulerPluginContext
     {
         public string strResultLongText { get; set; }
         public TimeSpan spnDuration { get; set; }
+        public Dictionary<string, string> dctParameters {get; set;}
     }
 
 }

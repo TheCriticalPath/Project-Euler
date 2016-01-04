@@ -8,6 +8,22 @@ namespace Helpers
 {
     public static class MathHelper
     {
+        public static List<int> PrimeSieve(int total) {
+            int cur = 1;
+            List<int> pc = Enumerable.Range(2, total).ToList();
+
+            while (cur <= Math.Sqrt(total))
+            {
+                int cur1 = cur;
+                int cur2 = pc.First(i => i > cur1);
+
+                pc.RemoveAll(i => i != cur2 && i % cur2 == 0);
+                cur = cur2;
+            }
+
+            Console.WriteLine(pc.Max());
+            return pc;
+        }
         public struct QuadraticResult
         {
             public double n1, n2;

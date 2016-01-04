@@ -37,8 +37,9 @@ namespace UI
 
             Task<IEulerPluginContext> tContext = plugin.PerformActionAsync(context);
             context = await tContext;
-            textBox1.AppendText(String.Format("{0}{1}", context.strResultLongText, System.Environment.NewLine));
-            textBox1.AppendText(string.Format("Results Calculated in: {0} ms{1}", context.spnDuration.TotalMilliseconds, Environment.NewLine));
+            textBox1.AppendText(string.Format("{0}{1}", plugin.Name, Environment.NewLine));
+            textBox1.AppendText(String.Format("  {0}{1}", context.strResultLongText, System.Environment.NewLine));
+            textBox1.AppendText(string.Format("  Results Calculated in: {0} ms{1}", context.spnDuration.TotalMilliseconds, Environment.NewLine));
         }
 
         private  void btnExecutePlugin_Click(object sender, EventArgs e)
@@ -60,8 +61,9 @@ namespace UI
                 context = plugin.PerformAction(context);
                 dtEnd = DateTime.Now;
                 context.spnDuration = dtEnd.Subtract(dtStart);
-                 textBox1.AppendText(String.Format("{0}{1}", context.strResultLongText, System.Environment.NewLine));
-                textBox1.AppendText(string.Format("Results Calculated in: {0} ms{1}", context.spnDuration.TotalMilliseconds, Environment.NewLine));
+                textBox1.AppendText(string.Format("{0}{1}", plugin.Name, Environment.NewLine));
+                textBox1.AppendText(string.Format("  {0}{1}", context.strResultLongText, Environment.NewLine));
+                textBox1.AppendText(string.Format("  Results Calculated in: {0} ms{1}", context.spnDuration.TotalMilliseconds, Environment.NewLine));
             }
            
         }

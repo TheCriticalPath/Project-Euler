@@ -17,6 +17,44 @@ namespace Helpers
             }
             return retval.ToString(0, retval.Length - 1);
         }
+
+        public static List<string> PermuteString(string s)
+        {
+            List<string> result = new List<string>();
+            List<string> r = new List<string>();
+            if (s.Length <= 1)
+            {
+                result.Add(s);
+            }
+            else {
+                for (int i = 0; i < s.Length; i++)
+                {
+                    r = PermuteString(s.Substring(0, i) + s.Substring(i + 1));
+                    foreach (string t in r.Select(x => s.Substring(i, 1) + x))
+                    {
+                        if (!result.Contains(t.SortWord()))
+                        {
+                            result.Add(t.SortWord());
+                        }
+                    }
+                    foreach (string t in r)
+                    {
+                        if (!result.Contains(t.SortWord()))
+                        {
+                            result.Add(t.SortWord());
+                        }
+                    }
+                }
+            }
+            return result;
+        }
+            public static string ReplaceAt(this string value, int index, char newchar)
+            {
+                if (value.Length <= index)
+                    return value;
+                else
+                    return string.Concat(value.Select((c, i) => i == index ? newchar : c));
+            }
         public enum SHIFTDIRECTION
         {
             SHIFTLEFT = 1,
@@ -64,7 +102,7 @@ namespace Helpers
             retVal = true;
             try
             {
-                for ( i = 0; i <= origLen - 1; i++)
+                for (i = 0; i <= origLen - 1; i++)
                 {
                     chr = Convert.ToChar(i.ToString());
                     index = s.IndexOf(chr);
@@ -80,10 +118,16 @@ namespace Helpers
                 }
                 if (s.Length > 0) { retVal = false; }
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 System.Diagnostics.Debug.WriteLine(e.Source);
             }
             return retVal;
         }
     }
 }
+
+
+
+/*
+    */
