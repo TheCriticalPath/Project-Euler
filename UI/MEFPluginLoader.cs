@@ -25,6 +25,7 @@ namespace UI
             _Container = new CompositionContainer(catalog);
 
             _Container.ComposeParts(this);
+            
         }
     }
 }
