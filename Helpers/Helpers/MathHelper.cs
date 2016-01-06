@@ -473,7 +473,14 @@ namespace Helpers
             return ceilIndex;
         }
 
-
+        public static BigInteger factorial(int start, int limit) {
+            BigInteger retval = 0;
+            if (start > limit)
+                retval = start * factorial(start-1, limit);
+            else
+                retval = 1;
+            return retval;
+        }
 
     }
 }
