@@ -103,7 +103,7 @@ Find the smallest positive integer, x, such that 2x, 3x, 4x, 5x, and 6x, contain
                             if (four == five) {
                                 six = (6 * i).ToString().SortWord();
                                 if (five == six) {
-                                    retval = string.Format("{0} is the permuted multiple.",i);
+                                    retval = $"{i} is the permuted multiple.";
                                     break;
                                 }
                             }
