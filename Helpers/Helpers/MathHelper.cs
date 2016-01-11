@@ -472,6 +472,15 @@ namespace Helpers
 
             return ceilIndex;
         }
+        public static int DigitalSum(this BigInteger i) {
+            char[] c = i.ToString().ToCharArray();
+            int sum = 0;
+            foreach (char a in c) {
+                sum += int.Parse(a.ToString());
+            }
+            return sum;
+        }
+
 
         public static BigInteger factorial(int start, int limit) {
             BigInteger retval = 0;

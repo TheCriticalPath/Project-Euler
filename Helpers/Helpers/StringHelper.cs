@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Globalization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -48,13 +49,40 @@ namespace Helpers
             }
             return result;
         }
-            public static string ReplaceAt(this string value, int index, char newchar)
-            {
-                if (value.Length <= index)
-                    return value;
-                else
-                    return string.Concat(value.Select((c, i) => i == index ? newchar : c));
+        private static IEnumerable<string> GraphemeClusters(this string s) {
+            var enumerator = StringInfo.GetTextElementEnumerator(s);
+            while (enumerator.MoveNext()) {
+                yield return (string)enumerator.Current;
             }
+        }
+        public static string ReverseString(this string s) {
+            return string.Join("", s.GraphemeClusters().Reverse().ToArray());
+        }
+        public static bool isPalindrome(this string value) {
+            string left = string.Empty;
+            string right = string.Empty;
+            decimal len = 0;
+            decimal mid = 0;
+            len = value.Length;
+            if (len == 1) return true;
+            mid = Math.Floor(len/2);
+            left = value.Substring(0, (int)mid);
+            if (len % 2 == 0)
+            {
+                right = value.Substring((int)mid);
+            }
+            else {
+                right = value.Substring((int)mid + 1);
+            }
+            return left == right.ReverseString();
+        }
+        public static string ReplaceAt(this string value, int index, char newchar)
+        {
+            if (value.Length <= index)
+                return value;
+            else
+                return string.Concat(value.Select((c, i) => i == index ? newchar : c));
+        }
         public enum SHIFTDIRECTION
         {
             SHIFTLEFT = 1,
@@ -124,6 +152,7 @@ namespace Helpers
             }
             return retVal;
         }
+
     }
 }
 
