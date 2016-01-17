@@ -18,7 +18,45 @@ namespace Helpers
             }
             return retval.ToString(0, retval.Length - 1);
         }
-
+        public static List<string> Combinations(string set, int k) {
+            List<string> result = new List<string>();
+            int n = set.Length;
+            CombinationsRecursive(set, "", n, k, ref result);
+            return result;
+        }
+        private static List<string> CombinationsRecursive(string set, string prefix, int n, int k, ref List<string> result) {
+    
+            if (k == 0) {
+                result.Add(prefix);
+            }
+            else{
+                for (int i = 0; i < n; i++) {
+                    string newPrefix = prefix + set[i];
+                    CombinationsRecursive(set, newPrefix, n, k - 1,ref result);
+                }
+            }
+            return result;
+        }
+        public static List<string> Permutations(int r, string n) {
+            List<string> result = new List<string>();
+            int setLength = n.Length;
+            char[] prefix = new char[r];
+            result.AddRange(PermutationsRecursive(n, ref prefix,  0, setLength-1, 0, r, ref result));
+            return result;
+        }
+        private static List<string> PermutationsRecursive(string n, ref char[] prefix, int s, int e, int index , int r, ref List<string> result ) {
+            if (index == r)
+            {
+                result.Add(string.Join("",prefix));
+            }
+            else {
+                for (int i = s; i <= e && e - i + 1 >= r - index; i++) {
+                    prefix[index] = n[i];
+                    PermutationsRecursive(n,ref prefix, i + 1, e, index + 1, r, ref result);
+                }
+            }
+            return result;
+        }
         public static List<string> PermuteString(string s)
         {
             List<string> result = new List<string>();
