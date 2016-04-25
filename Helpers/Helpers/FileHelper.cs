@@ -1,10 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 namespace Helpers
 {
     public static class FileHelper
     {
+        public static List<char> GetFileAsCharArray(string path, string delimiter)
+        {
+            List<string> input = GetFile(path, delimiter);
+            List<char> output = new List<char>();
+            char c = char.MinValue;
+            foreach (string s in input)
+            {
+                c = (char)int.Parse(s);
+                output.Add(c);
+            }
+            input.Clear();
+            return output;
+        }
 
         public static List<string> GetFile(string path, string delimiter) {
             List<string> input = new List<string>();
