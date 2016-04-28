@@ -56,7 +56,7 @@ namespace Problem_67
         {
             try
             {
-                Triangle = Helpers.FileHelper.GetFileAsStringArray("Input\\triangle.txt");
+                Triangle = Helpers.FileHelper.GetFileAsStringArray("Input\\p067_triangle.txt");
                 context.strResultLongText = BottomUpSum(Triangle);
             }
             catch (Exception ex) {

@@ -37,6 +37,10 @@
     <StartupObject>UI.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NHunspell, Version=1.2.5554.16953, Culture=neutral, PublicKeyToken=1ac793ea843b4366, processorArchitecture=MSIL">
+      <HintPath>..\packages\NHunspell.1.2.5554.16953\lib\net\NHunspell.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -72,6 +76,26 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Dictionary\en_us\dictionaries.xcu" />
+    <None Include="Dictionary\en_us\en_AU.aff" />
+    <None Include="Dictionary\en_us\en_AU.dic" />
+    <None Include="Dictionary\en_us\en_CA.aff" />
+    <None Include="Dictionary\en_us\en_CA.dic" />
+    <None Include="Dictionary\en_us\en_GB.aff" />
+    <None Include="Dictionary\en_us\en_GB.dic" />
+    <None Include="Dictionary\en_us\en_US.aff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Dictionary\en_us\en_US.dic">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Dictionary\en_us\en_ZA.aff" />
+    <None Include="Dictionary\en_us\en_ZA.dic" />
+    <None Include="Dictionary\en_us\hyph_en_GB.dic" />
+    <None Include="Dictionary\en_us\hyph_en_US.dic" />
+    <None Include="Dictionary\en_us\th_en_US_v2.dat" />
+    <None Include="Dictionary\en_us\th_en_US_v2.idx" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -94,6 +118,40 @@
       <Project>{9f2e8bfc-87ae-4193-974b-2187e08ea088}</Project>
       <Name>PluginInterface</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Dictionary\en_us\affDescription.txt" />
+    <Content Include="Dictionary\en_us\changelog.txt" />
+    <Content Include="Dictionary\en_us\description.xml" />
+    <Content Include="Dictionary\en_us\English.png" />
+    <Content Include="Dictionary\en_us\license.txt" />
+    <Content Include="Dictionary\en_us\META-INF\manifest.xml" />
+    <Content Include="Dictionary\en_us\package-description.txt" />
+    <Content Include="Dictionary\en_us\README.txt" />
+    <Content Include="Dictionary\en_us\README_en_AU.txt" />
+    <Content Include="Dictionary\en_us\README_en_CA.txt" />
+    <Content Include="Dictionary\en_us\README_en_GB.txt" />
+    <Content Include="Dictionary\en_us\README_en_GB_thes.txt" />
+    <Content Include="Dictionary\en_us\README_en_US.txt" />
+    <Content Include="Dictionary\en_us\README_en_ZA.txt" />
+    <Content Include="Dictionary\en_us\README_hyph_en_GB.txt" />
+    <Content Include="Dictionary\en_us\README_hyph_en_US.txt" />
+    <Content Include="Dictionary\en_us\WordNet_license.txt" />
+    <None Include="Hunspellx64.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Hunspellx86.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="Input\p059_cipher.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Input\p022_names.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Input\p067_triangle.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

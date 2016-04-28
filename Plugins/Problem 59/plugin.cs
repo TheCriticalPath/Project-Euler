@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.ComponentModel.Composition;
 using Helpers;
 using System.Numerics;
+using NHunspell;
 namespace Problem_59
 {
     [Export(typeof(IEulerPlugin))]
@@ -20,7 +21,6 @@ namespace Problem_59
         public long _lowerLimit;
         public string _aff;
         public string _dic;
-        NHunspell.Hunspell _hunspell;
         //TODO: Replace the project number, Title, and Description
         public int ID { get { return 59; } }
         public string Title { get { return "XOR Decryption"; } }
@@ -73,8 +73,6 @@ Your task has been made easy, as the encryption key consists of three lower case
             _upperLimit = GetLimit("Key Length", "3");
             _aff = GetFilePath("AFF File", "Dictionary\\en_US\\en_us.aff");
             _dic = GetFilePath("DIC File", "Dictionary\\en_US\\en_us.dic");
-
-            _hunspell = new NHunspell.Hunspell(_aff, _dic);
         }
 
 
@@ -108,50 +106,45 @@ Your task has been made easy, as the encryption key consists of three lower case
             string retval = new string(' ', input.Count);   // return string
             char[] ret = new char[input.Count];
             char pKey1 = char.MinValue;
-            bool skipKey1 = false;
+            char skipChar = '0';
             long clearSum = 0;
             int i = 0;
+            int j = 0;
             List<string> keys = StringHelper.Combinations("abcdefghijklmnopqrstuvwxyz", (int)_upperLimit);
             char l;
             i = 0;
+            j = 0;
             foreach (string key in keys)
             {
                 retval = string.Empty;
-                if (!skipKey1 || pKey1 != key[0])
+                i = 0;
+                if (key[0] != skipChar)
                 {
-                    i = 0;
                     foreach (char c in input)
                     {
-                        switch (i % 3)
-                        {
-                            case 0:
-                                l = (char)(c ^ key[0]);
-                                break;
-                            case 1:
-                                l = (char)(c ^ key[1]);
-                                break;
-                            case 2:
-                                l = (char)(c ^ key[2]);
-                                break;
-                            default:
-                                l = char.MinValue;
-                                break;
-                        }
+                        j = i % 3;
+                        l = (char)(c ^ key[j]);
                         retval = retval + l.ToString();
                         i++;
                     }
-                    if (checkSpelling(retval)) {
-                        foreach (char c in retval.ToCharArray()) {
+
+                    if (!char.IsLetterOrDigit(retval[0]) && !char.IsPunctuation(retval[0]))
+                    {
+                        skipChar = key[0];
+                    }else if (checkSpelling(retval))
+                    {
+                        foreach (char c in retval.ToCharArray())
+                        {
                             clearSum += (int)c;
                         }
                         retval = $"Key: {key}; Sum of the Key: {(int)key[0] + (int)key[1] + (int)key[2] }; Sum of Text {clearSum}{System.Environment.NewLine}" + retval;
                         break;
                     }
                 }
-                pKey1 = key[0];
             }
             return retval;
         }
+
 
         private bool checkSpelling(string clear)
         {
@@ -163,20 +156,26 @@ Your task has been made easy, as the encryption key consists of three lower case
             {
                 retVal = false;
             }
-            else {
-                foreach(string word in words)
-                {
-                    if (_hunspell.Spell(word))
-                        correct++;
-                    else
-                        incorrect++;
-                    if (incorrect > words.Length / 2 || correct > words.Length / 2)
-                        break;
-                }
+            else if (words.Length < 10)
+            {
+                retVal = false;
+            }
+            else
+            {
+                using (Hunspell _hunspell = new Hunspell(_aff, _dic))
+                    foreach (string word in words)
+                    {
+                        if (_hunspell.Spell(word))
+                            correct++;
+                        else
+                            incorrect++;
+                        if (incorrect > words.Length / 2 || correct > words.Length / 2)
+                            break;
+                    }
             }
             if (correct > words.Length / 2)
                 retVal = true;
             return retVal;
-        }  
+        }
     }
 }

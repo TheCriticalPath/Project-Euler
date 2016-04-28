@@ -59,7 +59,7 @@ What is the total of all the name scores in the file?"; } }
         {
             try
             {
-                _Input = FileHelper.GetFile("Input\\names.txt",",");
+                _Input = FileHelper.GetFile("Input\\p022_names.txt",",");
 
                 context.strResultLongText = CalculateNameScores(_Input);
             }
