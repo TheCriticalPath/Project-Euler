@@ -21,7 +21,7 @@ namespace Helpers
                 cur = cur2;
             }
 
-            Console.WriteLine(pc.Max());
+            //Console.WriteLine(pc.Max());
             return pc;
         }
         public struct QuadraticResult

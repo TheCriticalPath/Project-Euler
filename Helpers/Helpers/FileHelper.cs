@@ -2,10 +2,21 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+
 namespace Helpers
 {
     public static class FileHelper
     {
+        public static void WriteBinaryFile(List<char> input) {
+            FileStream fs = new FileStream("C:\\TEMP\\BINARY.BIN",FileMode.Create, FileAccess.ReadWrite);
+            BinaryWriter bw = new BinaryWriter(fs,System.Text.Encoding.UTF8);
+            foreach(char i in input) {
+                bw.Write(i);
+            }
+            bw.Flush();
+            bw.Close();
+            bw.Dispose();
+        }
         public static List<char> GetFileAsCharArray(string path, string delimiter)
         {
             List<string> input = GetFile(path, delimiter);
@@ -15,8 +26,10 @@ namespace Helpers
             {
                 c = (char)int.Parse(s);
                 output.Add(c);
+              
             }
             input.Clear();
+            WriteBinaryFile(output);
             return output;
         }
 

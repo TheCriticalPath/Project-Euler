@@ -9,45 +9,61 @@ namespace Helpers
 {
     public static class StringHelper
     {
-        public static string JoinInt(this int[] array)
+        public static string JoinInt(this int[] array,  string delimiter = ",")
         {
             StringBuilder retval = new StringBuilder();
             for (int i = 0; i < array.Length; i++)
             {
-                retval.AppendFormat("{0},", array[i]);
+                retval.AppendFormat("{0}{1}", array[i],delimiter);
             }
-            return retval.ToString(0, retval.Length - 1);
+            return retval.ToString(0, retval.Length - delimiter.Length);
         }
-        public static List<string> Combinations(string set, int k) {
+        public static List<string> Combinations<T>(List<T> set, int k) {
             List<string> result = new List<string>();
-            int n = set.Length;
+            int n = set.Count();
             CombinationsRecursive(set, "", n, k, ref result);
             return result;
         }
-        private static List<string> CombinationsRecursive(string set, string prefix, int n, int k, ref List<string> result) {
+        private static List<string> CombinationsRecursive<T>(List<T> set, string prefix, int n, int k, ref List<string> result) {
     
             if (k == 0) {
                 result.Add(prefix);
             }
             else{
                 for (int i = 0; i < n; i++) {
-                    string newPrefix = prefix + set[i];
+                    string newPrefix = prefix + set[i].ToString();
                     CombinationsRecursive(set, newPrefix, n, k - 1,ref result);
                 }
             }
             return result;
         }
-        public static List<string> Permutations(int r, string n) {
+
+
+        public static IEnumerable<IEnumerable<T>> Permutations<T>(IEnumerable<T> list, int length) {
+            if (length == 1) return list.Select(t => new T[] { t });
+
+            return Permutations(list, length - 1)
+                .SelectMany(t => list.Where(e => !t.Contains(e)),
+                    (t1, t2) => t1.Concat(new T[] { t2 }));
+        }
+
+        public static List<string> Permutations<T>(int r, List<T> n) {
             List<string> result = new List<string>();
-            int setLength = n.Length;
-            char[] prefix = new char[r];
-            result.AddRange(PermutationsRecursive(n, ref prefix,  0, setLength-1, 0, r, ref result));
+            int setLength = n.Count();
+            T[] prefix = new T[r];
+            PermutationsRecursive(n, ref prefix,  0, setLength-1, 0, r, ref result);
             return result;
         }
-        private static List<string> PermutationsRecursive(string n, ref char[] prefix, int s, int e, int index , int r, ref List<string> result ) {
+        private static List<string> PermutationsRecursive<T>(List<T> n, ref T[] prefix, int s, int e, int index , int r, ref List<string> result ) {
+            string str = string.Empty;
             if (index == r)
             {
-                result.Add(string.Join("",prefix));
+                str = string.Join("", prefix);
+                if (!result.Contains(str))
+                {
+                    result.Add(str);
+                }
+                
             }
             else {
                 for (int i = s; i <= e && e - i + 1 >= r - index; i++) {

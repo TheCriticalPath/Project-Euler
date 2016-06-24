@@ -110,7 +110,7 @@ Your task has been made easy, as the encryption key consists of three lower case
             long clearSum = 0;
             int i = 0;
             int j = 0;
-            List<string> keys = StringHelper.Combinations("abcdefghijklmnopqrstuvwxyz", (int)_upperLimit);
+            List<string> keys = StringHelper.Combinations("abcdefghijklmnopqrstuvwxyz".Select(c=>c.ToString()).ToList(), (int)_upperLimit);
             char l;
             i = 0;
             j = 0;
